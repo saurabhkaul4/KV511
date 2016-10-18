@@ -1,0 +1,41 @@
+package edu.psu.os.KV511.model;
+
+public class Message {
+
+	private String instruction;
+	private long key;
+	private long value;
+	
+	public Message(String instruction, long key, long value) {
+		super();
+		this.instruction = instruction;
+		this.key = key;
+		this.value = value;
+	}
+	
+	public String getInstruction() {
+		return instruction;
+	}
+	public void setInstruction(String instruction) {
+		this.instruction = instruction;
+	}
+	public long getKey() {
+		return key;
+	}
+	public void setKey(long key) {
+		this.key = key;
+	}
+	public long getValue() {
+		return value;
+	}
+	public void setValue(long value) {
+		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [instruction=" + instruction + ", key=" + 
+					String.valueOf(key) + ", value=" + String.valueOf(value) + "]";
+	}
+	
+}
