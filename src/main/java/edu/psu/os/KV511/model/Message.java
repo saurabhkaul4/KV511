@@ -1,7 +1,11 @@
 package edu.psu.os.KV511.model;
 
-public class Message {
+import java.io.Serializable;
 
+public class Message implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String instruction;
 	private long key;
 	private long value;

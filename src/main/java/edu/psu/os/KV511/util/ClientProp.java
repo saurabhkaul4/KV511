@@ -41,5 +41,9 @@ public class ClientProp {
 	public int getPort() {
 		return Integer.parseInt(prop.getProperty(PORT));
 	}
+	
+	public String get(String property) {
+		return prop.getProperty(property);
+	}
 
 }

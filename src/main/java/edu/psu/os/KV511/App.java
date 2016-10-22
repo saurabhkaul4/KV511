@@ -1,13 +1,22 @@
 package edu.psu.os.KV511;
 
-/**
- * Hello world!
- *
- */
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import edu.psu.os.KV511.session.ClientType1;
+
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ) {
+    	ClientType1 client = new ClientType1();
+        try {
+			client.insertForTesting();
+			client.insertForTesting();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
     }
 }
