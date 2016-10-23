@@ -1,6 +1,5 @@
 package edu.psu.os.KV511.util;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +7,7 @@ import java.util.Properties;
 
 public class ClientProp {
 	
-	private final static String PROP_FILE = "SessionProps.prop";
+	private final static String PROP_FILE = "SessionProps.properties";
 	private final static String IP = "frontend_ip";
 	private final static String PORT = "frontend_port";
 	private Properties prop;
@@ -17,7 +16,8 @@ public class ClientProp {
 	public ClientProp() {
 		prop = new Properties();
 		try {
-			input = new FileInputStream(PROP_FILE);
+			input = getClass().getClassLoader()
+			        .getResourceAsStream(PROP_FILE);
 			prop.load(input);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

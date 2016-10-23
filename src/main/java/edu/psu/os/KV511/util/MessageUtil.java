@@ -19,9 +19,9 @@ public class MessageUtil {
 	
 	public void getRequest(long key) throws IOException {
 		Message msg = new Message("GET", key, key);
-		System.out.println("Put Request "+ key);
+		System.out.println("GET Request "+ key);
 		out.writeUTF(msg.toString());
-		System.out.println("Put Response " + in.readUTF());
+		System.out.println("GET Response " + in.readUTF());
 	}
 	
 	public void putRequest(long key, long value) throws IOException {

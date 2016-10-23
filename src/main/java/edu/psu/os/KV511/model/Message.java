@@ -38,8 +38,7 @@ public class Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Message [instruction=" + instruction + ", key=" + 
-					String.valueOf(key) + ", value=" + String.valueOf(value) + "]";
+		return String.valueOf(key) + ":" + String.valueOf(value);
 	}
 	
 }

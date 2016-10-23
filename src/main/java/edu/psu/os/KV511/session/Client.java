@@ -6,5 +6,5 @@ import java.net.UnknownHostException;
 
 public interface Client {
 
-	public Socket initSocket() throws UnknownHostException, IOException;
+	Socket initSocket() throws UnknownHostException, IOException;
 }

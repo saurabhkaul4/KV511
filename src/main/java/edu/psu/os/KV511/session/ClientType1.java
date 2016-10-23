@@ -8,6 +8,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import edu.psu.os.KV511.util.ClientProp;
 import edu.psu.os.KV511.util.MessageUtil;
 
+/**
+ * @KV511 client
+ *
+ */
 public class ClientType1 implements Client {
 
 	private ClientProp prop = null;
