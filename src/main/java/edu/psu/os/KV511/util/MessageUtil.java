@@ -33,6 +33,11 @@ public class MessageUtil {
 		System.out.println("Put Response " + in.readUTF());
 	}
 	
+	public void stop() throws IOException {
+		out.writeUTF("STOP");
+		out.flush();
+	}
+	
 	public void close() throws IOException {
 		in.close();
 		out.close();

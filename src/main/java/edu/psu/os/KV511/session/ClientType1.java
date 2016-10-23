@@ -32,6 +32,7 @@ public class ClientType1 implements Client {
 			int key = ThreadLocalRandom.current().nextInt(1, 10 + 1); 
 			msg.putRequest(key, key);
 		}
+		msg.stop();
 		msg.close();
 		socket.close();
 	}
@@ -55,6 +56,7 @@ public class ClientType1 implements Client {
 				int key = ThreadLocalRandom.current().nextInt(1, 10 + 1);
 				msg.getRequest(key);
 			}
+			msg.stop();
 			msg.close();
 			socket.close();
 		}
