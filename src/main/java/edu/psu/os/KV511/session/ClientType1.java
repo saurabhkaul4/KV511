@@ -25,23 +25,26 @@ public class ClientType1 implements Client {
 	}
 	
 	public void insertForTesting() throws UnknownHostException, IOException {
-		MessageUtil msg = new MessageUtil(initSocket());
+		Socket socket = initSocket();
+		MessageUtil msg = new MessageUtil(socket);
 		
 		for(int i = 1; i < 5; i++) {
 			int key = ThreadLocalRandom.current().nextInt(1, 10 + 1); 
 			msg.putRequest(key, key);
 		}
+		msg.close();
+		socket.close();
 	}
 	
 	public void doRequests()  throws UnknownHostException, IOException {
 		
-		int no_of_req = Integer.parseInt(prop.get("type1.no_of_req"));
-		int no_of_get = Integer.parseInt(prop.get("type1.no_of_get"));
-		int no_of_put = Integer.parseInt(prop.get("type1.no_of_put"));
+		int no_of_req = 5;//Integer.parseInt(prop.get("type1.no_of_req"));
+		int no_of_get = 5;//Integer.parseInt(prop.get("type1.no_of_get"));
+		int no_of_put = 5;//Integer.parseInt(prop.get("type1.no_of_put"));
 		
 		for(int i = 0; i < no_of_req; i++) {
-			
-			MessageUtil msg = new MessageUtil(initSocket());
+			Socket socket = initSocket();
+			MessageUtil msg = new MessageUtil(socket);
 			
 			for(int j = 0; j < no_of_put; j++) {
 				int key = ThreadLocalRandom.current().nextInt(1, 10 + 1);
@@ -52,6 +55,8 @@ public class ClientType1 implements Client {
 				int key = ThreadLocalRandom.current().nextInt(1, 10 + 1);
 				msg.getRequest(key);
 			}
+			msg.close();
+			socket.close();
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class ClientProp {
 	}
 	
 	public String getIP() {
-		return prop.getProperty(IP);
+		return "localhost";
 	} 
 	
 	public int getPort() {

@@ -17,18 +17,25 @@ public class MessageUtil {
 		in = new DataInputStream(socket.getInputStream());
 	}
 	
-	public void getRequest(long key) throws IOException {
+	public void getRequest(int key) throws IOException {
 		Message msg = new Message("GET", key, key);
 		System.out.println("GET Request "+ key);
 		out.writeUTF(msg.toString());
+		out.flush();
 		System.out.println("GET Response " + in.readUTF());
 	}
 	
-	public void putRequest(long key, long value) throws IOException {
+	public void putRequest(int key, int value) throws IOException {
 		Message msg = new Message("PUT", key, key);
 		System.out.println("Put Request "+ key);
 		out.writeUTF(msg.toString());
+		out.flush();
 		System.out.println("Put Response " + in.readUTF());
+	}
+	
+	public void close() throws IOException {
+		in.close();
+		out.close();
 	}
 	
 }

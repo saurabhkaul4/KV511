@@ -11,7 +11,7 @@ public class App
     	ClientType1 client = new ClientType1();
         try {
 			client.insertForTesting();
-			client.doRequests();
+			//client.doRequests();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
