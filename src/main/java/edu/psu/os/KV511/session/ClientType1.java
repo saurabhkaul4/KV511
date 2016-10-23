@@ -39,9 +39,9 @@ public class ClientType1 implements Client {
 	
 	public void doRequests()  throws UnknownHostException, IOException {
 		
-		int no_of_req = 5;//Integer.parseInt(prop.get("type1.no_of_req"));
-		int no_of_get = 5;//Integer.parseInt(prop.get("type1.no_of_get"));
-		int no_of_put = 5;//Integer.parseInt(prop.get("type1.no_of_put"));
+		int no_of_req = Integer.parseInt(prop.get("type1.num_of_sessions"));
+		int no_of_get = Integer.parseInt(prop.get("type1.no_of_get"));
+		int no_of_put = Integer.parseInt(prop.get("type1.no_of_put"));
 		
 		for(int i = 0; i < no_of_req; i++) {
 			Socket socket = initSocket();

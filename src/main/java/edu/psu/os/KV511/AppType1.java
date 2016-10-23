@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 import edu.psu.os.KV511.session.ClientType1;
 
-public class App 
+public class AppType1 
 {
     public static void main( String[] args ) {
     	ClientType1 client = new ClientType1();

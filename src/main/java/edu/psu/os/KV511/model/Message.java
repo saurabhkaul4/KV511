@@ -7,10 +7,10 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String instruction;
-	private int key;
-	private int value;
+	private long key;
+	private long value;
 	
-	public Message(String instruction, int key, int value) {
+	public Message(String instruction, long key, long value) {
 		super();
 		this.instruction = instruction;
 		this.key = key;
@@ -26,13 +26,13 @@ public class Message implements Serializable {
 	public long getKey() {
 		return key;
 	}
-	public void setKey(int key) {
+	public void setKey(long key) {
 		this.key = key;
 	}
 	public long getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(long value) {
 		this.value = value;
 	}
 
