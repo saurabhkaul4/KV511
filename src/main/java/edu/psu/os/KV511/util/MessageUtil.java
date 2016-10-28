@@ -1,40 +1,45 @@
 package edu.psu.os.KV511.util;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 
 import edu.psu.os.KV511.model.Message;
 
 public class MessageUtil {
 
-	private DataOutputStream out;
-	private DataInputStream in;
+	private BufferedOutputStream out;
+	private InputStream in;
 	
 	public MessageUtil(Socket socket) throws IOException {
-		out = new DataOutputStream(socket.getOutputStream());
-		in = new DataInputStream(socket.getInputStream());
+		out = new BufferedOutputStream(socket.getOutputStream());
+		in = socket.getInputStream();
 	}
 	
 	public void getRequest(long key) throws IOException {
 		Message msg = new Message("GET", key, key);
 		System.out.println("GET Request "+ key);
-		out.writeUTF(msg.toString());
+		out.write(msg.getString().getBytes());
 		out.flush();
-		System.out.println("GET Response " + in.readUTF());
+		byte[] buff = new byte[1024];
+		in.read(buff, 0, buff.length);
+		System.out.println("GET Response " + new String(buff));
 	}
 	
 	public void putRequest(long key, long value) throws IOException {
 		Message msg = new Message("PUT", key, key);
 		System.out.println("Put Request "+ key);
-		out.writeUTF(msg.toString());
+		out.write(msg.toString().getBytes());
 		out.flush();
-		System.out.println("Put Response " + in.readUTF());
+		byte[] buff = new byte[1024];
+		in.read(buff, 0, buff.length);
+		System.out.println("PUT Response " + new String(buff));
 	}
 	
+	
 	public void stop() throws IOException {
-		out.writeUTF("STOP");
+		out.write("STOP".toString().getBytes());
 		out.flush();
 	}
 	

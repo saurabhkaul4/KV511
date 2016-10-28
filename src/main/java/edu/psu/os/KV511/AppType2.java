@@ -4,9 +4,9 @@ import edu.psu.os.KV511.session.ClientType2;
 
 public class AppType2 {
 	 
-	public static void main( String[] args ) {
+	public static void run() {
 	 
-		for(int i = 0; i < 10000; i++) {
+		for(int i = 0; i < 10; i++) {
 			new Thread(new ClientType2()).start();
 		}
 	}

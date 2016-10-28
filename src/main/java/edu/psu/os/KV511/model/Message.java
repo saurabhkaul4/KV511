@@ -41,4 +41,8 @@ public class Message implements Serializable {
 		return String.valueOf(key) + ":" + String.valueOf(value);
 	}
 	
+	public String getString() {
+		return String.valueOf(key) + ":";
+	}
+	
 }

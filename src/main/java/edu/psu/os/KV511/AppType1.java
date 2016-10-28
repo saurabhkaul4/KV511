@@ -7,7 +7,7 @@ import edu.psu.os.KV511.session.ClientType1;
 
 public class AppType1 
 {
-    public static void main( String[] args ) {
+    public static void run() {
     	ClientType1 client = new ClientType1();
         try {
 			client.insertForTesting();
