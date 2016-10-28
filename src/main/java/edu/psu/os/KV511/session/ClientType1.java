@@ -15,13 +15,17 @@ import edu.psu.os.KV511.util.MessageUtil;
 public class ClientType1 implements Client {
 
 	private ClientProp prop = null;
+	private String ip;
+	private int port;
 	
-	public ClientType1() {
+	public ClientType1(String ip, int port) {
 		prop = new ClientProp();
+		this.ip = ip;
+		this.port = port;
 	}
 	
 	public Socket initSocket() throws UnknownHostException, IOException {
-		return new Socket(prop.getIP(), prop.getPort());
+		return new Socket(ip, port);
 	}
 	
 	public void insertForTesting() throws UnknownHostException, IOException {
@@ -48,12 +52,12 @@ public class ClientType1 implements Client {
 			MessageUtil msg = new MessageUtil(socket);
 			
 			for(int j = 0; j < no_of_put; j++) {
-				int key = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+				int key = ThreadLocalRandom.current().nextInt(1, 20 + 1);
 				msg.putRequest(key, key);
 			}
 			
 			for(int j = 0; j < no_of_get; j++) {
-				int key = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+				int key = ThreadLocalRandom.current().nextInt(1, 20 + 1);
 				msg.getRequest(key);
 			}
 			msg.stop();

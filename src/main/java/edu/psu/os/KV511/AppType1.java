@@ -7,8 +7,8 @@ import edu.psu.os.KV511.session.ClientType1;
 
 public class AppType1 
 {
-    public static void run() {
-    	ClientType1 client = new ClientType1();
+    public static void run(String ip, int port) {
+    	ClientType1 client = new ClientType1( ip, port);
         try {
 			client.insertForTesting();
 			client.doRequests();

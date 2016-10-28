@@ -3,13 +3,17 @@ package edu.psu.os.KV511;
 public class App {
 	
 	public static void main(String[] args) {
-		if(args[1].equalsIgnoreCase("1")) {
+		if(args[0].equalsIgnoreCase("1")) {
 			System.out.println("Running type 1 client");
-			AppType1.run();
+			AppType1.run( args[1],  Integer.parseInt(args[2]));
 		}
-		if(args[1].equalsIgnoreCase("2")) {
+		else if(args[0].equalsIgnoreCase("2")) {
 			System.out.println("Running type 2 client");
-			AppType2.run();
+			AppType2.run( args[1],  Integer.parseInt(args[2]));
 		}
+		else {
+			System.out.println("Please select correctly");
+		}
+		
 	}
 }
