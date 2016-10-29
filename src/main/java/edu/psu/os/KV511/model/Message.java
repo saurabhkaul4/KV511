@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static final String HUGE_KEY = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 	
 	private String instruction;
 	private long key;
@@ -43,6 +44,10 @@ public class Message implements Serializable {
 	
 	public String getString() {
 		return String.valueOf(key) + ":";
+	}
+	
+	public String hugeString() {
+		return String.valueOf(key) + ":" + HUGE_KEY;
 	}
 	
 }

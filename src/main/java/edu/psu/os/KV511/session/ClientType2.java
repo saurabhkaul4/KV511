@@ -27,7 +27,7 @@ public class ClientType2 implements Client, Runnable {
 			int no_of_req = 10; // Integer.parseInt(prop.get("type2.no_of_get"));
 
 			for (int i = 0; i < no_of_ses; i++) {
-				Thread.sleep(getPoisson(100)*10);
+				Thread.sleep(getPoisson(50));
 				Socket socket = initSocket();
 				MessageUtil msg = new MessageUtil(socket);
 

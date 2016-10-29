@@ -22,17 +22,18 @@ public class MessageUtil {
 		System.out.println("GET Request "+ key);
 		out.write(msg.getString().getBytes());
 		out.flush();
-		byte[] buff = new byte[1024];
+		byte[] buff = new byte[100];
 		in.read(buff, 0, buff.length);
 		System.out.println("GET Response " + new String(buff));
 	}
 	
 	public void putRequest(long key, long value) throws IOException {
-		Message msg = new Message("PUT", key, key);
+		Message msg = new Message("PUT", key, key); 
 		System.out.println("Put Request "+ key);
-		out.write(msg.toString().getBytes());
+		//out.write(msg.toString().getBytes());
+		out.write(msg.hugeString().getBytes());
 		out.flush();
-		byte[] buff = new byte[1024];
+		byte[] buff = new byte[100];
 		in.read(buff, 0, buff.length);
 		System.out.println("PUT Response " + new String(buff));
 	}
