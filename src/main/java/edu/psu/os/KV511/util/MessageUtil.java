@@ -30,8 +30,8 @@ public class MessageUtil {
 	public void putRequest(long key, long value) throws IOException {
 		Message msg = new Message("PUT", key, key); 
 		System.out.println("Put Request "+ key);
-		//out.write(msg.toString().getBytes());
-		out.write(msg.hugeString().getBytes());
+		out.write(msg.toString().getBytes());
+		//out.write(msg.hugeString().getBytes());
 		out.flush();
 		byte[] buff = new byte[100];
 		in.read(buff, 0, buff.length);

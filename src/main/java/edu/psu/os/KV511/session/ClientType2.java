@@ -11,39 +11,59 @@ public class ClientType2 implements Client, Runnable {
 
 	private String ip;
 	private int port;
+	private int[] a;
 
-	public ClientType2(String ip, int port) {
+	public ClientType2(String ip, int port, int[] a) {
 		this.ip = ip;
 		this.port = port;
+		this.a = a;
 	}
 
-	public Socket initSocket() throws UnknownHostException, IOException {
+	public Socket initSocket() throws UnknownHostException, IOException, Exception {
 		return new Socket(ip, port);
 	}
 
 	public void run() {
 		try {
-			int no_of_ses = 10000; // Integer.parseInt(prop.get("type2.num_of_sessions"));
-			int no_of_req = 10; // Integer.parseInt(prop.get("type2.no_of_get"));
+			int no_of_req = 10;
+			int time_quantum = (8 * 60) / 20;
+			int time_to_sleep = 0;
+			long key = 1;
+			for (int k = 4; k < 18; k++) {
+				if (a[k] < 5) {
+					continue;
+				} 
+				time_to_sleep = time_quantum / this.a[k];
+				for (int i = 0; i < this.a[k]; i++) {
+					Thread.sleep(time_to_sleep);
+					Socket socket = null;
+					MessageUtil msg = null;
+					try {
+						socket = initSocket();
+						if (socket != null) {
+							msg = new MessageUtil(socket);
 
-			for (int i = 0; i < no_of_ses; i++) {
-				Thread.sleep(getPoisson(50));
-				Socket socket = initSocket();
-				MessageUtil msg = new MessageUtil(socket);
-
-				for (int j = 0; j < no_of_req; j++) {
-					int ran = ThreadLocalRandom.current().nextInt(1, 10 + 1);
-					long key = ThreadLocalRandom.current().nextInt(1, 100000 + 1);
-					if (ran % 2 == 0) {
-						msg.putRequest(key, key);
-					} else {
-						msg.getRequest(key);
+							for (int j = 0; j < no_of_req; j++) {
+								int ran = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+								key = ThreadLocalRandom.current().nextInt(1, 500 + 1);
+								if (ran % 2 == 0) {
+									msg.putRequest(key, key);
+								} else {
+									msg.getRequest(key);
+								}
+							}
+						}
+					} catch (Exception e) {
+					} finally {
+						if (msg != null) {
+							msg.stop();
+							msg.close();
+						}
+						if (socket != null) {
+							socket.close();
+						}
 					}
 				}
-
-				msg.stop();
-				msg.close();
-				socket.close();
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -52,18 +72,6 @@ public class ClientType2 implements Client, Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static int getPoisson(double lambda) {
-		double L = Math.exp(-lambda);
-		double p = 1.0;
-		int k = 0;
-
-		do {
-			k++;
-			p *= Math.random();
-		} while (p > L);
-
-		return k - 1;
+		return;
 	}
 }
