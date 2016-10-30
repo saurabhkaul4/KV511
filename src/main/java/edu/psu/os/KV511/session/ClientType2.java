@@ -54,6 +54,7 @@ public class ClientType2 implements Client, Runnable {
 							}
 						}
 					} catch (Exception e) {
+						System.out.println(e);
 					} finally {
 						if (msg != null) {
 							msg.stop();

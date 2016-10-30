@@ -36,8 +36,7 @@ public class AppType2 {
 		}
 
 		for (int i = 0; i < 50; i++) {
-			//System.out.print(a[i]);
-			a[i] = a[i] / 5;
+			a[i] = a[i] / 10;
 		}
 	}
 
